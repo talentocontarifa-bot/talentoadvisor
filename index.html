@@ -41,6 +41,16 @@
                     <input type="text" id="project" placeholder=" " required>
                     <label for="project">Nombre Comercial / Empresa</label>
                 </div>
+
+                <div class="input-floating">
+                    <input type="number" id="avg_ticket" placeholder=" ">
+                    <label for="avg_ticket">Costo Promedio de Producto (Opcional)</label>
+                </div>
+
+                <div class="input-floating">
+                    <input type="text" id="social_link" placeholder=" ">
+                    <label for="social_link">Website o Red Social (Opcional)</label>
+                </div>
             </div>
 
             <!-- 02. ETAPA -->
@@ -60,7 +70,7 @@
                         <div class="option-icon">🚀</div>
                         <div class="option-content">
                             <h4>Validación</h4>
-                            <p>Primeras ventas esporádicas. Busco constancia.</p>
+                            <p>Primeras ventas esporádicas.</p>
                         </div>
                     </div>
 
@@ -83,7 +93,7 @@
                         <div class="option-icon">🖌️</div>
                         <div class="option-content">
                             <h4>Amateur / Casero</h4>
-                            <p>Logo hecho en Canva o inexistente.</p>
+                            <p>Logo hecho en Canva, IA básica o inexistente.</p>
                         </div>
                     </div>
 
@@ -91,7 +101,7 @@
                         <div class="option-icon">✨</div>
                         <div class="option-content">
                             <h4>Profesional</h4>
-                            <p>Identidad sólida, manual y assets vectoriales.</p>
+                            <p>Identidad sólida, manual y editables.</p>
                         </div>
                     </div>
                 </div>
@@ -105,10 +115,10 @@
 
                 <div class="budget-track">
                     <div class="budget-indicator" id="b-indicator"></div>
-                    <div class="budget-option" onclick="setBudget(0)">Starter</div>
-                    <div class="budget-option active" onclick="setBudget(1)">Growth</div>
-                    <div class="budget-option" onclick="setBudget(2)">Scale</div>
-                    <div class="budget-option" onclick="setBudget(3)">Elite</div>
+                    <div class="budget-option" onclick="setBudget(0)">Bajo</div>
+                    <div class="budget-option active" onclick="setBudget(1)">Medio</div>
+                    <div class="budget-option" onclick="setBudget(2)">Alto</div>
+                    <div class="budget-option" onclick="setBudget(3)">Top</div>
                 </div>
 
                 <div class="budget-value" id="budget-display">
@@ -118,7 +128,7 @@
 
             <!-- CTA -->
             <button class="btn-primary" onclick="startAnalysis()">
-                Generar Diagnóstico IA
+                Generar Diagnóstico
             </button>
 
         </div>
@@ -131,7 +141,7 @@
                     style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent-cyan); box-shadow: 0 0 20px var(--accent-pink);">
             </div>
 
-            <div class="section-label" style="justify-content: center; color: var(--text-main);">ESTRATEGIA RECOMENDADA
+            <div class="section-label" style="justify-content: center; color: var(--text-main);">TU DIAGNÓSTICO
             </div>
             <h2 id="res-title"
                 style="text-align: center; font-size: 2rem; color: var(--accent-yellow); margin-top: 0; text-transform:uppercase;">
@@ -140,14 +150,10 @@
 
             <div
                 style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 16px; margin: 30px 0; line-height: 1.8; color: #e2e8f0; font-size: 1.1rem;">
-                <!-- Datos ocultos para uso en JS si necesario -->
-                <span id="res-name" style="display:none"></span>
-                <span id="res-project" style="display:none"></span>
-
                 <p id="res-desc"><!-- TEXTO DINÁMICO --></p>
             </div>
 
-            <button class="btn-primary"
+            <button class="btn-primary" id="btn-cta"
                 style="background: #25D366; color: white; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 5px 0 #128c7e;">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path
@@ -174,28 +180,27 @@
             budget: 1
         };
 
-        // Textos de Estrategia
+        // 4 ESTRATEGIAS CLAVE
         const strategies = {
-            'incubacion': {
-                title: "PROGRAMA DE INCUBACIÓN",
-                icon: "🌱",
-                intro: "Tu foco debe ser la VALIDACIÓN, no la sofisticación.",
-                text: "El algoritmo detecta que estás en una fase temprana con recursos limitados. Invertir en automatización ahora sería quemar capital. Tu prioridad absoluta es conseguir tus primeros 10-20 clientes de forma orgánica para validar tu oferta antes de escalar.",
-                cta: "APLICAR A INCUBADORA"
+            'genesis': {
+                title: "PAQUETE GÉNESIS",
+                text: "Antes de correr, necesitas zapatos. Detectamos que tu identidad visual no está lista para competir en el mercado actual. Empezar campañas sin una imagen profesional es tirar dinero. Tu primer paso es el <b>Diseño de Logo + Kit Inicial</b>.",
+                cta: "VER PAQUETE GÉNESIS"
             },
-            'aceleracion': {
-                title: "SISTEMA DE FLUJO CONSTANTE",
-                icon: "🚀",
-                intro: "Tienes validación, pero te falta PREDICTIBILIDAD.",
-                text: "Hemos analizado que ya facturas, pero tus ingresos oscilan. Tienes el combustible necesario para sistematizar. La estrategia óptima es instalar un embudo de ventas que convierta desconocidos en clientes 24/7.",
-                cta: "SISTEMATIZAR MIS VENTAS"
+            'diy': {
+                title: "PUBLICIDAD DIY (HAZLO TÚ MISMO)",
+                text: "Tienes las bases, pero tu presupuesto actual sugiere cautela. La mejor inversión para ti es aprender a gestionar tus propias campañas con nuestra guía, manteniendo tus costos bajos mientras validas tu mercado.",
+                cta: "VER OPCIÓN DIY"
             },
-            'delegacion': {
-                title: "PLAN SOCIO DELEGADO",
-                icon: "💎",
-                intro: "Eres el cuello de botella de tu propio ÉXITO.",
-                text: "Tu puntaje es alto: tienes tracción, marca y capital. Lo único que te frena es tu tiempo operativos. No necesitas otro curso ni más herramientas; necesitas un equipo que ejecute por ti mientras tú cierras negocios High Ticket.",
-                cta: "AGENDAR SESIÓN DE SOCIO"
+            'dfy': {
+                title: "PUBLICIDAD DFY (NOSOTROS NOS ENCARGAMOS)",
+                text: "Estás listo para escalar. Tienes la imagen, la tracción y el capital. No pierdas tiempo aprendiendo curvas técnicas; nuestro equipo se encargará de todo tu ecosistema publicitario para traerte resultados.",
+                cta: "AGENDAR ONBOARDING"
+            },
+            'no_help': {
+                title: "NO PODEMOS AYUDARTE POR AHORA",
+                text: "Gracias por tu honestidad. Basado en tus respuestas, creemos que tu proyecto aún está en una etapa demasiado temprana para nuestras soluciones. Te recomendamos seguir validando tu idea orgánicamente antes de invertir.",
+                cta: "VER RECURSOS GRATUITOS"
             }
         };
 
@@ -233,41 +238,38 @@
             const name = document.getElementById('name').value;
             const project = document.getElementById('project').value;
 
+            // Opcionales (Solo se capturan, no bloquean)
+            const ticket = document.getElementById('avg_ticket').value;
+            const social = document.getElementById('social_link').value;
+
             if (!name || !project) {
-                alert("Por favor completa tu nombre y el de tu proyecto para continuar.");
+                alert("Por favor completa los campos principales.");
                 return;
             }
 
             document.getElementById('loader').style.display = 'flex';
 
-            // --- ALGORITMO DE PUNTUACIÓN (SCORING) ---
-            let score = 0;
+            // --- NUEVA LÓGICA DE DECISIÓN (4 SALIDAS) ---
+            let selectedStrategy = 'diy'; // Default
 
-            // 1. Etapa (Base)
-            if (state.stage === 'seed') score += 10;
-            if (state.stage === 'validation') score += 20;
-            if (state.stage === 'traction') score += 30;
-
-            // 2. Visual (Multiplicador de autoridad)
-            if (state.visual === 'pro') score += 5;
-
-            // 3. Presupuesto (Combustible)
-            // Indices: 0 (Starter), 1 (Growth), 2 (Scale), 3 (Elite)
-            score += (state.budget * 5);
-
-            // --- SELECCIÓN DE ESTRATEGIA ---
-            let selectedStrategy = '';
-
-            // Lógica de decisión
-            if (score <= 15) {
-                selectedStrategy = 'incubacion';
-            } else if (score > 15 && score < 35) {
-                selectedStrategy = 'aceleracion';
-            } else {
-                selectedStrategy = 'delegacion';
+            // 1. FILTRO VISUAL: Si es amateur -> GÉNESIS (Prioridad máxima)
+            if (state.visual === 'amateur') {
+                selectedStrategy = 'genesis';
             }
-
-            console.log("Puntaje Final:", score, "Estrategia:", selectedStrategy);
+            // 2. FILTRO PRESUPUESTO + ETAPA
+            else {
+                // Si ya es Pro Visualmente:
+                if (state.stage === 'seed' && state.budget === 0) {
+                    // Semilla + Presupuesto más bajo -> No Help
+                    selectedStrategy = 'no_help';
+                } else if (state.budget >= 2) {
+                    // Presupuesto Alto o Top -> DFY (Done For You)
+                    selectedStrategy = 'dfy';
+                } else {
+                    // Presupuesto Bajo/Medio + No es seed pobre -> DIY
+                    selectedStrategy = 'diy';
+                }
+            }
 
             const resultData = strategies[selectedStrategy];
 
@@ -275,32 +277,17 @@
                 document.getElementById('loader').style.display = 'none';
                 document.getElementById('main-form').style.display = 'none';
 
-                // Set text
-                document.getElementById('res-name').innerText = name;
-                document.getElementById('res-project').innerText = project;
-
                 document.getElementById('res-title').innerText = resultData.title;
-
-                // Construcción del mensaje personalizado
-                const htmlContent = `
-                    <div style="margin-bottom: 15px; font-weight:700; color:var(--accent-cyan); text-transform:uppercase; letter-spacing:1px;">
-                        ${resultData.intro}
-                    </div>
-                    <p>Hola <b style="color:white">${name}</b>.</p>
-                    <p>${resultData.text}</p>
-                    <div style="margin-top:20px; font-size:0.9rem; opacity:0.7; border-top:1px solid rgba(255,255,255,0.1); padding-top:10px;">
-                        🔍 <b>Factor Determinante:</b> Tu combinación de etapa (${state.stage.toUpperCase()}) y capacidad de inversión (${budgets[state.budget]}) nos indica este camino.
-                    </div>
-                `;
-
-                document.getElementById('res-desc').innerHTML = htmlContent;
+                document.getElementById('res-desc').innerHTML = `Hola <b>${name}</b>.<br><br>${resultData.text}`;
                 document.getElementById('res-cta-text').innerText = resultData.cta;
+
+                // Si es "no help", cambiar color de botón o estilo si quisieras
 
                 const result = document.getElementById('result-view');
                 result.style.display = 'block';
                 result.style.animation = 'fadeInUp 0.8s ease-out';
 
-            }, 2500);
+            }, 2000);
         }
     </script>
 </body>
