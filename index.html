@@ -167,50 +167,50 @@
     </div>
 
     <script>
-        // State
+        // State State Management
         let state = {
-            stage: 'traction', // Default selection
+            stage: 'traction',
             visual: 'pro',
             budget: 1
         };
 
-        // Configuration of Results
+        // Textos de Estrategia
         const strategies = {
-            'seed': {
+            'incubacion': {
                 title: "PROGRAMA DE INCUBACIÓN",
                 icon: "🌱",
-                text: "Estás en la fase más emocionante pero riesgosa. En este punto, no necesitas automatización compleja, necesitas <b>validación de oferta</b>. Tu prioridad es conseguir tus primeros 10 clientes de forma manual y orgánica.",
-                cta: "INICIAR PROGRAMA SEMILLA"
+                intro: "Tu foco debe ser la VALIDACIÓN, no la sofisticación.",
+                text: "El algoritmo detecta que estás en una fase temprana con recursos limitados. Invertir en automatización ahora sería quemar capital. Tu prioridad absoluta es conseguir tus primeros 10-20 clientes de forma orgánica para validar tu oferta antes de escalar.",
+                cta: "APLICAR A INCUBADORA"
             },
-            'validation': {
+            'aceleracion': {
                 title: "SISTEMA DE FLUJO CONSTANTE",
                 icon: "🚀",
-                text: "Ya tienes ventas, pero son impredecibles. Tu negocio sufre de 'picos y valles'. La estrategia óptima es construir un <b>embudo de ventas automatizado</b> que estabilice tus ingresos para que puedas planear a futuro.",
-                cta: "ESTABILIZAR MIS VENTAS"
+                intro: "Tienes validación, pero te falta PREDICTIBILIDAD.",
+                text: "Hemos analizado que ya facturas, pero tus ingresos oscilan. Tienes el combustible necesario para sistematizar. La estrategia óptima es instalar un embudo de ventas que convierta desconocidos en clientes 24/7.",
+                cta: "SISTEMATIZAR MIS VENTAS"
             },
-            'traction': {
+            'delegacion': {
                 title: "PLAN SOCIO DELEGADO",
                 icon: "💎",
-                text: "Tu proyecto muestra señales claras de éxito, pero te estás convirtiendo en el cuello de botella. El error número uno aquí es intentar hacerlo todo tú mismo. Necesitas <b>delegar la operación</b> para enfocarte en la expansión.",
-                cta: "RECIBIR PLAN DE DELEGACIÓN"
+                intro: "Eres el cuello de botella de tu propio ÉXITO.",
+                text: "Tu puntaje es alto: tienes tracción, marca y capital. Lo único que te frena es tu tiempo operativos. No necesitas otro curso ni más herramientas; necesitas un equipo que ejecute por ti mientras tú cierras negocios High Ticket.",
+                cta: "AGENDAR SESIÓN DE SOCIO"
             }
         };
 
         function selectOption(el, group, value) {
             const container = el.parentElement;
-            // Visual toggle
             Array.from(container.children).forEach(child => child.classList.remove('selected'));
             el.classList.add('selected');
-
-            // Save state
             state[group] = value;
         }
 
         const budgets = [
-            "$1,500 - $3,000 MXN",
-            "$5,000 - $8,000 MXN",
-            "$10,000 - $20,000 MXN",
-            "$25,000+ MXN"
+            "$1,500 - $3,000",
+            "$5,000 - $8,000",
+            "$10,000 - $20,000",
+            "$25,000+"
         ];
 
         function setBudget(index) {
@@ -219,14 +219,11 @@
             options.forEach(opt => opt.classList.remove('active'));
             options[index].classList.add('active');
 
-            // Move indicator
             const indicator = document.getElementById('b-indicator');
             indicator.style.transform = `translateX(${index * 100}%)`;
 
-            // Update text
-            document.getElementById('budget-display').innerText = budgets[index];
+            document.getElementById('budget-display').innerText = budgets[index] + " MXN";
 
-            // Add pulse effect
             const display = document.getElementById('budget-display');
             display.style.opacity = 0;
             setTimeout(() => { display.style.opacity = 1; }, 100);
@@ -243,25 +240,62 @@
 
             document.getElementById('loader').style.display = 'flex';
 
-            // Select strategy based on logic
-            // For this demo, primary logic is based on 'Stage'.
-            // In a real app, complex logic mixing budget + visual + stage would go here.
-            const resultData = strategies[state.stage];
+            // --- ALGORITMO DE PUNTUACIÓN (SCORING) ---
+            let score = 0;
+
+            // 1. Etapa (Base)
+            if (state.stage === 'seed') score += 10;
+            if (state.stage === 'validation') score += 20;
+            if (state.stage === 'traction') score += 30;
+
+            // 2. Visual (Multiplicador de autoridad)
+            if (state.visual === 'pro') score += 5;
+
+            // 3. Presupuesto (Combustible)
+            // Indices: 0 (Starter), 1 (Growth), 2 (Scale), 3 (Elite)
+            score += (state.budget * 5);
+
+            // --- SELECCIÓN DE ESTRATEGIA ---
+            let selectedStrategy = '';
+
+            // Lógica de decisión
+            if (score <= 15) {
+                selectedStrategy = 'incubacion';
+            } else if (score > 15 && score < 35) {
+                selectedStrategy = 'aceleracion';
+            } else {
+                selectedStrategy = 'delegacion';
+            }
+
+            console.log("Puntaje Final:", score, "Estrategia:", selectedStrategy);
+
+            const resultData = strategies[selectedStrategy];
 
             setTimeout(() => {
                 document.getElementById('loader').style.display = 'none';
                 document.getElementById('main-form').style.display = 'none';
 
-                // Populate result
+                // Set text
                 document.getElementById('res-name').innerText = name;
                 document.getElementById('res-project').innerText = project;
 
-                // Dynamic Content
                 document.getElementById('res-title').innerText = resultData.title;
-                document.getElementById('res-desc').innerHTML = `Hola <b style="color:white">${name}</b>, el sistema ha analizado a <b style="color:var(--accent-cyan)">${project}</b>.<br><br>${resultData.text}`;
+
+                // Construcción del mensaje personalizado
+                const htmlContent = `
+                    <div style="margin-bottom: 15px; font-weight:700; color:var(--accent-cyan); text-transform:uppercase; letter-spacing:1px;">
+                        ${resultData.intro}
+                    </div>
+                    <p>Hola <b style="color:white">${name}</b>.</p>
+                    <p>${resultData.text}</p>
+                    <div style="margin-top:20px; font-size:0.9rem; opacity:0.7; border-top:1px solid rgba(255,255,255,0.1); padding-top:10px;">
+                        🔍 <b>Factor Determinante:</b> Tu combinación de etapa (${state.stage.toUpperCase()}) y capacidad de inversión (${budgets[state.budget]}) nos indica este camino.
+                    </div>
+                `;
+
+                document.getElementById('res-desc').innerHTML = htmlContent;
                 document.getElementById('res-cta-text').innerText = resultData.cta;
 
-                // Show result
                 const result = document.getElementById('result-view');
                 result.style.display = 'block';
                 result.style.animation = 'fadeInUp 0.8s ease-out';
