@@ -48,7 +48,7 @@
                 <div class="section-label">02. Madurez del Negocio</div>
 
                 <div class="option-grid">
-                    <div class="option-card" onclick="selectOption(this, 'stage')">
+                    <div class="option-card" onclick="selectOption(this, 'stage', 'seed')">
                         <div class="option-icon">🌱</div>
                         <div class="option-content">
                             <h4>Fase Semilla</h4>
@@ -56,7 +56,7 @@
                         </div>
                     </div>
 
-                    <div class="option-card" onclick="selectOption(this, 'stage')">
+                    <div class="option-card" onclick="selectOption(this, 'stage', 'validation')">
                         <div class="option-icon">🚀</div>
                         <div class="option-content">
                             <h4>Validación</h4>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
 
-                    <div class="option-card selected" onclick="selectOption(this, 'stage')">
+                    <div class="option-card selected" onclick="selectOption(this, 'stage', 'traction')">
                         <div class="option-icon">💎</div>
                         <div class="option-content">
                             <h4>Tracción / Escala</h4>
@@ -79,7 +79,7 @@
                 <div class="section-label">03. Estado de Marca</div>
 
                 <div class="option-grid">
-                    <div class="option-card" onclick="selectOption(this, 'visual')">
+                    <div class="option-card" onclick="selectOption(this, 'visual', 'amateur')">
                         <div class="option-icon">🖌️</div>
                         <div class="option-content">
                             <h4>Amateur / Casero</h4>
@@ -87,7 +87,7 @@
                         </div>
                     </div>
 
-                    <div class="option-card selected" onclick="selectOption(this, 'visual')">
+                    <div class="option-card selected" onclick="selectOption(this, 'visual', 'pro')">
                         <div class="option-icon">✨</div>
                         <div class="option-content">
                             <h4>Profesional</h4>
@@ -124,33 +124,36 @@
         </div>
 
         <!-- RESULTADO -->
-        <div id="result-view" class="glass-card result-card" style="margin-top: 40px; border: 1px solid var(--accent);">
+        <div id="result-view" class="glass-card result-card"
+            style="margin-top: 40px; border: 1px solid var(--accent-yellow);">
             <div style="text-align: center; margin-bottom: 30px;">
                 <img src="assets/image_0.jpg" alt="Icono"
-                    style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); box-shadow: 0 0 20px var(--accent-glow);">
+                    style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent-cyan); box-shadow: 0 0 20px var(--accent-pink);">
             </div>
 
             <div class="section-label" style="justify-content: center; color: var(--text-main);">ESTRATEGIA RECOMENDADA
             </div>
-            <h2 style="text-align: center; font-size: 2rem; color: var(--accent); margin-top: 0;">PLAN SOCIO DELEGADO
+            <h2 id="res-title"
+                style="text-align: center; font-size: 2rem; color: var(--accent-yellow); margin-top: 0; text-transform:uppercase;">
+                <!-- Dinámico -->
             </h2>
 
             <div
-                style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 16px; margin: 30px 0; line-height: 1.8; color: #e2e8f0;">
-                <p>Hola <b id="res-name" style="color: white;">Rufino</b>,</p>
-                <p>Tu proyecto <b id="res-project" style="color: var(--accent);">Constructora RS</b> muestra señales
-                    claras de tracción. El error número uno en esta etapa es intentar hacerlo todo tú mismo.</p>
-                <p>Tu tiempo vale más cerrando negocios que editando videos. Hemos diseñado un plan de delegación
-                    estratégica para ti.</p>
+                style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 16px; margin: 30px 0; line-height: 1.8; color: #e2e8f0; font-size: 1.1rem;">
+                <!-- Datos ocultos para uso en JS si necesario -->
+                <span id="res-name" style="display:none"></span>
+                <span id="res-project" style="display:none"></span>
+
+                <p id="res-desc"><!-- TEXTO DINÁMICO --></p>
             </div>
 
             <button class="btn-primary"
-                style="background: #25D366; color: white; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                style="background: #25D366; color: white; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 5px 0 #128c7e;">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path
                         d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.001.572 2.135.882 3.292.882h.004c3.178 0 5.765-2.586 5.765-5.766 0-3.18-2.587-5.765-5.765-5.765zm6.818 9.389c-.288.8-1.42 1.564-1.956 1.637-.478.064-1.107.135-3.818-.94-2.88-1.144-4.814-4.104-5.056-4.428-.242-.324-1.206-1.606-1.206-3.046 0-1.44.757-2.149 1.026-2.445.269-.296.713-.376 1.157-.376.129 0 .26.002.37.009.309.02.48.14.63.393.185.313.633 1.562.688 1.83.054.269.09.538-.054.834-.144.296-.301.479-.597.776-.296.296-.606.39-.281.948.337.58 1.488 2.474 3.193 3.992.427.381.821.575 1.127.723.367.177.838.156 1.157-.177.376-.393 1.625-1.902 2.056-2.552.43-.65 1.135-1.045 1.135.156 0 1.2-.185 2.4-.413 3.6z" />
                 </svg>
-                RECIBIR PLAN EN WHATSAPP
+                <span id="res-cta-text">RECIBIR EN WHATSAPP</span>
             </button>
         </div>
 
@@ -164,11 +167,43 @@
     </div>
 
     <script>
-        // Interacción simple
-        function selectOption(el, group) {
+        // State
+        let state = {
+            stage: 'traction', // Default selection
+            visual: 'pro',
+            budget: 1
+        };
+
+        // Configuration of Results
+        const strategies = {
+            'seed': {
+                title: "PROGRAMA DE INCUBACIÓN",
+                icon: "🌱",
+                text: "Estás en la fase más emocionante pero riesgosa. En este punto, no necesitas automatización compleja, necesitas <b>validación de oferta</b>. Tu prioridad es conseguir tus primeros 10 clientes de forma manual y orgánica.",
+                cta: "INICIAR PROGRAMA SEMILLA"
+            },
+            'validation': {
+                title: "SISTEMA DE FLUJO CONSTANTE",
+                icon: "🚀",
+                text: "Ya tienes ventas, pero son impredecibles. Tu negocio sufre de 'picos y valles'. La estrategia óptima es construir un <b>embudo de ventas automatizado</b> que estabilice tus ingresos para que puedas planear a futuro.",
+                cta: "ESTABILIZAR MIS VENTAS"
+            },
+            'traction': {
+                title: "PLAN SOCIO DELEGADO",
+                icon: "💎",
+                text: "Tu proyecto muestra señales claras de éxito, pero te estás convirtiendo en el cuello de botella. El error número uno aquí es intentar hacerlo todo tú mismo. Necesitas <b>delegar la operación</b> para enfocarte en la expansión.",
+                cta: "RECIBIR PLAN DE DELEGACIÓN"
+            }
+        };
+
+        function selectOption(el, group, value) {
             const container = el.parentElement;
+            // Visual toggle
             Array.from(container.children).forEach(child => child.classList.remove('selected'));
             el.classList.add('selected');
+
+            // Save state
+            state[group] = value;
         }
 
         const budgets = [
@@ -179,6 +214,7 @@
         ];
 
         function setBudget(index) {
+            state.budget = index;
             const options = document.querySelectorAll('.budget-option');
             options.forEach(opt => opt.classList.remove('active'));
             options[index].classList.add('active');
@@ -190,12 +226,10 @@
             // Update text
             document.getElementById('budget-display').innerText = budgets[index];
 
-            // Add pulse effect to text
+            // Add pulse effect
             const display = document.getElementById('budget-display');
             display.style.opacity = 0;
-            setTimeout(() => {
-                display.style.opacity = 1;
-            }, 100);
+            setTimeout(() => { display.style.opacity = 1; }, 100);
         }
 
         function startAnalysis() {
@@ -203,11 +237,16 @@
             const project = document.getElementById('project').value;
 
             if (!name || !project) {
-                alert("Por favor completa tu nombre y el de tu proyecto.");
+                alert("Por favor completa tu nombre y el de tu proyecto para continuar.");
                 return;
             }
 
             document.getElementById('loader').style.display = 'flex';
+
+            // Select strategy based on logic
+            // For this demo, primary logic is based on 'Stage'.
+            // In a real app, complex logic mixing budget + visual + stage would go here.
+            const resultData = strategies[state.stage];
 
             setTimeout(() => {
                 document.getElementById('loader').style.display = 'none';
@@ -217,6 +256,12 @@
                 document.getElementById('res-name').innerText = name;
                 document.getElementById('res-project').innerText = project;
 
+                // Dynamic Content
+                document.getElementById('res-title').innerText = resultData.title;
+                document.getElementById('res-desc').innerHTML = `Hola <b style="color:white">${name}</b>, el sistema ha analizado a <b style="color:var(--accent-cyan)">${project}</b>.<br><br>${resultData.text}`;
+                document.getElementById('res-cta-text').innerText = resultData.cta;
+
+                // Show result
                 const result = document.getElementById('result-view');
                 result.style.display = 'block';
                 result.style.animation = 'fadeInUp 0.8s ease-out';
