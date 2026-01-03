@@ -1,21 +1,25 @@
 :root {
-    /* Brand Colors */
-    --primary-dark: #020617; /* Slate 950 */
-    --primary: #0F172A;      /* Slate 900 */
-    --primary-light: #1E293B; /* Slate 800 */
-    
-    --accent: #D4AF37;       /* Metallic Gold */
-    --accent-glow: rgba(212, 175, 55, 0.4);
-    --accent-dim: #8a701e;
-    
-    --text-main: #F8FAFC;
-    --text-muted: #94A3B8;
-    
-    --glass-bg: rgba(30, 41, 59, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    
-    --success: #10B981;
-    --font-heading: 'Outfit', sans-serif;
+    /* Brand Colors - Vibrant Pop */
+    --primary-dark: #020055;
+    /* Deep Electric Blue */
+    --primary: #1a1a70;
+    /* Lighter Blue for gradients */
+
+    --accent-cyan: #00F2EA;
+    /* Electric Cyan */
+    --accent-pink: #F91B4F;
+    /* Hot Pink/Red */
+    --accent-yellow: #FAFF00;
+    /* Neon Yellow */
+
+    --text-main: #FFFFFF;
+    --text-muted: #E0E7FF;
+
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --card-hover: rgba(255, 255, 255, 0.15);
+
+    --font-heading: 'Anton', sans-serif;
     --font-body: 'Outfit', sans-serif;
 }
 
@@ -29,9 +33,12 @@ body {
     font-family: var(--font-body);
     background-color: var(--primary-dark);
     color: var(--text-main);
-    background-image: 
-        radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(15, 23, 42, 1) 0%, transparent 40%);
+    /* Vibrant abstract background mimicking the reference blobs */
+    background-image:
+        radial-gradient(circle at 90% 10%, var(--accent-pink) 0%, transparent 40%),
+        radial-gradient(circle at 10% 90%, var(--primary) 0%, transparent 50%),
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 2px, transparent 2px, transparent 10px);
+    background-attachment: fixed;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -41,8 +48,8 @@ body {
 
 .app-container {
     width: 100%;
-    max-width: 700px;
-    padding: 40px 20px;
+    max-width: 650px;
+    padding: 20px;
     position: relative;
     z-index: 10;
 }
@@ -50,94 +57,153 @@ body {
 /* --- HEADER --- */
 header {
     text-align: center;
-    margin-bottom: 50px;
-    animation: fadeDown 1s ease-out;
+    margin-bottom: 40px;
+    position: relative;
 }
 
 .logo-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .logo-img {
-    max-height: 80px; /* Adjust based on actual image */
-    object-fit: contain;
-    filter: drop-shadow(0 0 15px var(--accent-glow));
+    max-height: 120px;
+    /* Adding a subtle float animation to the brain */
+    animation: float 6s ease-in-out infinite;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    /* HUGE IMPACT */
+    text-transform: uppercase;
+    font-weight: 400;
+    /* Anton is bold by default */
     margin: 0;
-    background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: -1px;
+    line-height: 1;
+    color: var(--accent-yellow);
+    text-shadow: 4px 4px 0px var(--accent-pink);
+    /* Pop Art 3D shadow */
+    letter-spacing: 2px;
 }
 
 .subtitle {
-    color: var(--text-muted);
-    font-size: 1.1rem;
-    margin-top: 10px;
-    font-weight: 300;
+    color: var(--text-main);
+    font-size: 1.2rem;
+    margin-top: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--accent-cyan);
+    color: var(--primary-dark);
+    display: inline-block;
+    padding: 5px 15px;
+    transform: skew(-5deg);
+    /* Dynamic angle */
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
 /* --- CARDS --- */
 .glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 40px;
-    margin-bottom: 30px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    background: rgba(2, 0, 85, 0.6);
+    /* Semi-transparent deep blue */
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     animation: fadeInUp 0.8s ease-out backwards;
 }
 
-.glass-card:nth-child(1) { animation-delay: 0.2s; }
-.glass-card:nth-child(2) { animation-delay: 0.3s; }
-.glass-card:nth-child(3) { animation-delay: 0.4s; }
-.glass-card:nth-child(4) { animation-delay: 0.5s; }
-
-.section-label {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--accent);
-    font-weight: 700;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+/* Decorative line on top of cards */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-pink));
 }
 
-.section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
-    opacity: 0.3;
+.glass-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.glass-card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.glass-card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.glass-card:nth-child(4) {
+    animation-delay: 0.5s;
+}
+
+.section-label {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.section-label span {
+    color: var(--accent-cyan);
+    font-size: 2rem;
+    line-height: 1;
 }
 
 /* --- INPUTS --- */
 .input-floating {
     position: relative;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .input-floating input {
     width: 100%;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--glass-border);
-    padding: 20px 20px 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid transparent;
+    padding: 18px 20px;
     border-radius: 12px;
     color: white;
     font-size: 1.1rem;
-    font-family: inherit;
+    font-family: var(--font-body);
+    font-weight: 600;
     transition: all 0.3s ease;
+    outline: none;
+}
+
+.input-floating input:focus {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 0 4px rgba(0, 242, 234, 0.2);
     outline: none;
 }
 
@@ -147,25 +213,19 @@ h1 {
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-muted);
-    font-size: 1rem;
     pointer-events: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
 }
 
-.input-floating input:focus,
-.input-floating input:not(:placeholder-shown) {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: var(--accent);
-    box-shadow: 0 0 20px var(--accent-glow);
-}
-
-.input-floating input:focus ~ label,
-.input-floating input:not(:placeholder-shown) ~ label {
-    top: 10px;
-    transform: none;
-    font-size: 0.75rem;
-    color: var(--accent);
-    font-weight: 600;
+.input-floating input:focus~label,
+.input-floating input:not(:placeholder-shown)~label {
+    top: -10px;
+    left: 10px;
+    font-size: 0.8rem;
+    color: var(--accent-cyan);
+    background: var(--primary-dark);
+    padding: 0 5px;
+    font-weight: 700;
 }
 
 /* --- OPTIONS GRID --- */
@@ -175,52 +235,55 @@ h1 {
 }
 
 .option-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     padding: 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 20px;
-    transition: all 0.3s ease;
+    gap: 15px;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     position: relative;
     overflow: hidden;
 }
 
 .option-card:hover {
-    background: rgba(255, 255, 255, 0.06);
-    transform: translateX(5px);
-    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-cyan);
 }
 
 .option-card.selected {
-    background: rgba(212, 175, 55, 0.1);
-    border-color: var(--accent);
-    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+    background: rgba(0, 242, 234, 0.1);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 10px 20px rgba(0, 242, 234, 0.15);
 }
 
 .option-icon {
     font-size: 1.8rem;
-    background: rgba(0,0,0,0.2);
     width: 50px;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--accent-cyan);
     transition: all 0.3s;
 }
 
 .option-card.selected .option-icon {
-    background: var(--accent);
+    background: var(--accent-cyan);
     color: var(--primary-dark);
+    box-shadow: 0 0 15px var(--accent-cyan);
 }
 
 .option-content h4 {
-    margin: 0 0 5px 0;
+    margin: 0 0 2px 0;
     font-size: 1.1rem;
-    color: var(--text-main);
+    color: white;
+    font-weight: 700;
 }
 
 .option-content p {
@@ -232,97 +295,99 @@ h1 {
 /* --- BUDGET SLIDER --- */
 .budget-track {
     display: flex;
-    background: rgba(0,0,0,0.3);
-    padding: 5px;
-    border-radius: 14px;
-    margin-top: 15px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 6px;
+    border-radius: 50px;
     position: relative;
     isolation: isolate;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 15px;
 }
 
 .budget-option {
     flex: 1;
     text-align: center;
-    padding: 15px 0;
+    padding: 12px 0;
     cursor: pointer;
     position: relative;
     z-index: 2;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-muted);
     transition: color 0.3s;
+    font-size: 0.9rem;
 }
 
 .budget-option.active {
-    color: var(--primary-dark);
+    color: white;
 }
 
 /* The sliding background pill */
 .budget-indicator {
     position: absolute;
-    top: 5px;
-    left: 5px;
-    bottom: 5px;
-    width: calc(25% - 7.5px); /* 4 items */
-    background: var(--accent);
-    border-radius: 10px;
+    top: 6px;
+    left: 6px;
+    bottom: 6px;
+    width: calc(25% - 9px);
+    /* 4 items */
+    background: var(--accent-pink);
+    border-radius: 40px;
     z-index: 1;
-    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-    box-shadow: 0 4px 15px var(--accent-glow);
+    transition: transform 0.3s cubic-bezier(0.3, 1.5, 0.7, 1);
+    box-shadow: 0 5px 15px rgba(249, 27, 79, 0.5);
 }
 
 .budget-value {
     text-align: center;
-    margin-top: 20px;
-    font-size: 1.2rem;
-    color: var(--accent);
-    font-weight: 700;
-    height: 24px; /* prevent layout shift */
+    margin-top: 25px;
+    font-size: 2rem;
+    font-family: var(--font-heading);
+    color: var(--accent-yellow);
+    text-shadow: 0 0 20px rgba(250, 255, 0, 0.5);
+    height: 24px;
+    /* prevent layout shift */
 }
 
 /* --- CTA BUTTON --- */
 .btn-primary {
     width: 100%;
-    padding: 24px;
-    background: var(--accent);
+    padding: 22px;
+    background: linear-gradient(90deg, var(--accent-cyan), #00A8FF);
     color: var(--primary-dark);
     border: none;
     border-radius: 16px;
-    font-size: 1.1rem;
-    font-weight: 800;
+    font-size: 1.4rem;
+    font-family: var(--font-heading);
     letter-spacing: 1px;
     text-transform: uppercase;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 0 rgba(212, 175, 55, 0);
+    transition: all 0.3s;
+    box-shadow: 0 10px 0 rgba(0, 150, 200, 1);
+    /* Hard 3D shadow */
+    margin-top: 10px;
+    transform: translateY(0);
 }
 
-.btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    transition: 0.5s;
-}
-
-.btn-primary:hover::before {
-    left: 100%;
+.btn-primary:active {
+    transform: translateY(6px);
+    box-shadow: 0 4px 0 rgba(0, 150, 200, 1);
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 40px var(--accent-glow);
-    background: #e5bd3d;
+    filter: brightness(1.1);
 }
 
 /* --- LOADING & RESULTS --- */
 .loader-overlay {
     position: fixed;
-    top: 0; left: 0; w: 100%; h: 100%;
-    width: 100vw; height: 100vh;
-    background: rgba(2, 6, 23, 0.95);
+    top: 0;
+    left: 0;
+    w: 100%;
+    h: 100%;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(2, 0, 85, 0.98);
     backdrop-filter: blur(20px);
     display: none;
     flex-direction: column;
@@ -332,9 +397,10 @@ h1 {
 }
 
 .spinner {
-    width: 80px; height: 80px;
-    border: 4px solid rgba(255,255,255,0.1);
-    border-top-color: var(--accent);
+    width: 80px;
+    height: 80px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--accent-pink);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-bottom: 30px;
@@ -343,10 +409,38 @@ h1 {
 .result-card {
     display: none;
     border-left: 6px solid var(--accent);
-    background: linear-gradient(to right, rgba(212, 175, 55, 0.1), transparent);
+    background: rgba(255, 255, 255, 0.05);
+    /* Resetting result card bg override */
+    border: 2px solid var(--accent-yellow);
 }
 
 /* --- ANIMATIONS --- */
-@keyframes spin { 100% { transform: rotate(360deg); } }
-@keyframes fadeDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
