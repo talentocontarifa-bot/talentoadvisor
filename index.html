@@ -55,82 +55,100 @@
                 </div>
             </div>
 
-            <!-- 02. ETAPA -->
+            <!-- PREGUNTA 1: EL ESPEJO -->
             <div class="glass-card">
-                <div class="section-label">02. Madurez del Negocio</div>
+                <div class="section-label">01. La Prueba del Espejo</div>
+                <p style="color:var(--text-muted); margin-bottom:15px;">Si tu negocio entrara hoy por la puerta, ¿cómo
+                    iría vestido?</p>
 
                 <div class="option-grid">
-                    <div class="option-card" onclick="selectOption(this, 'stage', 'seed')">
+                    <div class="option-card" onclick="selectOption(this, 'q1', 'naked')">
+                        <div class="option-icon">🙈</div>
+                        <div class="option-content">
+                            <h4>Desnudo... o con una sábana</h4>
+                            <p>Apenas tengo la idea o el nombre, no tengo visuales.</p>
+                        </div>
+                    </div>
+
+                    <div class="option-card" onclick="selectOption(this, 'q1', 'messy')">
+                        <div class="option-icon">👕</div>
+                        <div class="option-content">
+                            <h4>Ropa vieja o que no combina</h4>
+                            <p>Tengo un logo pero no me convence o se ve anticuado.</p>
+                        </div>
+                    </div>
+
+                    <div class="option-card selected" onclick="selectOption(this, 'q1', 'clean')">
+                        <div class="option-icon">👔</div>
+                        <div class="option-content">
+                            <h4>Impecable y Profesional</h4>
+                            <p>Tengo identidad visual definida, manual y listo para vender.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREGUNTA 2: EL TIEMPO -->
+            <div class="glass-card">
+                <div class="section-label">02. El Factor Tiempo</div>
+                <p style="color:var(--text-muted); margin-bottom:15px;">Seamos honestos con tu agenda, ¿cuánto tiempo
+                    real tienes para crear contenido?</p>
+
+                <div class="option-grid">
+                    <div class="option-card" onclick="selectOption(this, 'q2', 'time')">
+                        <div class="option-icon">🛠️</div>
+                        <div class="option-content">
+                            <h4>Tengo tiempo y ganas</h4>
+                            <p>Puedo dedicarle horas, pero me falta creatividad técnica.</p>
+                        </div>
+                    </div>
+
+                    <div class="option-card selected" onclick="selectOption(this, 'q2', 'no_time')">
+                        <div class="option-icon">👑</div>
+                        <div class="option-content">
+                            <h4>Mi tiempo es CERO</h4>
+                            <p>Entre operación y ventas no me da la vida. Necesito delegar.</p>
+                        </div>
+                    </div>
+
+                    <div class="option-card" onclick="selectOption(this, 'q2', 'start')">
                         <div class="option-icon">🌱</div>
                         <div class="option-content">
-                            <h4>Fase Semilla</h4>
-                            <p>Tengo una idea, pero aún no he vendido nada.</p>
-                        </div>
-                    </div>
-
-                    <div class="option-card" onclick="selectOption(this, 'stage', 'validation')">
-                        <div class="option-icon">🚀</div>
-                        <div class="option-content">
-                            <h4>Validación</h4>
-                            <p>Primeras ventas esporádicas.</p>
-                        </div>
-                    </div>
-
-                    <div class="option-card selected" onclick="selectOption(this, 'stage', 'traction')">
-                        <div class="option-icon">💎</div>
-                        <div class="option-content">
-                            <h4>Tracción / Escala</h4>
-                            <p>Operación activa y clientes recurrentes.</p>
+                            <h4>Tengo tiempo, pero empiezo de cero</h4>
+                            <p>Necesito construir primero antes de operar.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 03. AUDITORÍA VISUAL -->
+            <!-- PREGUNTA 3: LA SOLUCIÓN -->
             <div class="glass-card">
-                <div class="section-label">03. Estado de Marca</div>
-
-                <div class="option-grid">
-                    <div class="option-card" onclick="selectOption(this, 'visual', 'amateur')">
-                        <div class="option-icon">🖌️</div>
-                        <div class="option-content">
-                            <h4>Amateur / Casero</h4>
-                            <p>Logo hecho en Canva, IA básica o inexistente.</p>
-                        </div>
-                    </div>
-
-                    <div class="option-card selected" onclick="selectOption(this, 'visual', 'pro')">
-                        <div class="option-icon">✨</div>
-                        <div class="option-content">
-                            <h4>Profesional</h4>
-                            <p>Identidad sólida, manual y editables.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 04. PRESUPUESTO -->
-            <div class="glass-card">
-                <div class="section-label">04. Capacidad de Fuego</div>
-                <p style="color: var(--text-muted); margin-bottom: 20px;">Inversión mensual disponible para crecimiento.
+                <div class="section-label">03. Tu Estilo de Viaje</div>
+                <p style="color:var(--text-muted); margin-bottom:15px;">¿Cómo te gustaría solucionar este problema hoy?
                 </p>
 
-                <div class="budget-track">
-                    <div class="budget-indicator" id="b-indicator"></div>
-                    <div class="budget-option" onclick="setBudget(0)">Bajo</div>
-                    <div class="budget-option active" onclick="setBudget(1)">Medio</div>
-                    <div class="budget-option" onclick="setBudget(2)">Alto</div>
-                    <div class="budget-option" onclick="setBudget(3)">Top</div>
-                </div>
+                <div class="option-grid">
+                    <div class="option-card" onclick="selectOption(this, 'q3', 'drive')">
+                        <div class="option-icon">🚗</div>
+                        <div class="option-content">
+                            <h4>Yo manejo el barco</h4>
+                            <p>Denme las herramientas y el mapa, yo ejecuto.</p>
+                        </div>
+                    </div>
 
-                <div class="budget-value" id="budget-display">
-                    $5,000 - $8,000 MXN
+                    <div class="option-card selected" onclick="selectOption(this, 'q3', 'passenger')">
+                        <div class="option-icon">🎫</div>
+                        <div class="option-content">
+                            <h4>Tomen las llaves</h4>
+                            <p>Yo me siento atrás y disfruto el viaje. Háganlo por mí.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- CTA -->
             <button class="btn-primary" onclick="startAnalysis()">
-                Generar Diagnóstico
+                Descubrir Estrategia Ideal
             </button>
 
         </div>
@@ -143,8 +161,7 @@
                     style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent-cyan); box-shadow: 0 0 20px var(--accent-pink);">
             </div>
 
-            <div class="section-label" style="justify-content: center; color: var(--text-main);">TU DIAGNÓSTICO
-            </div>
+            <div class="section-label" style="justify-content: center; color: var(--text-main);">TU DIAGNÓSTICO</div>
             <h2 id="res-title"
                 style="text-align: center; font-size: 2rem; color: var(--accent-yellow); margin-top: 0; text-transform:uppercase;">
                 <!-- Dinámico -->
@@ -181,37 +198,31 @@
 
         // State
         let state = {
-            stage: 'traction',
-            visual: 'pro',
-            budget: 1,
-            currentStrategy: 'diy' // Para guardar el resultado final
+            q1: 'clean', // Espejo
+            q2: 'no_time', // Tiempo
+            q3: 'passenger', // Viaje
+            currentStrategy: 'dominio'
         };
 
-        // 4 ESTRATEGIAS CLAVE
+        // 3 PLANES MAESTROS
         const strategies = {
             'genesis': {
-                title: "PAQUETE GÉNESIS",
-                text: "Antes de correr, necesitas zapatos. Detectamos que tu identidad visual no está lista para competir en el mercado actual. Empezar campañas sin una imagen profesional es tirar dinero. Tu primer paso es el <b>Diseño de Logo + Kit Inicial</b>.",
-                cta: "SOLICITAR PAQUETE GÉNESIS",
-                wa_msg: "Hola Talento, hice mi diagnóstico y necesito el *Paquete Génesis* para arreglar mi identidad visual. 🎨"
+                title: "PLAN GÉNESIS",
+                text: "Tu negocio necesita cimientos antes de un techo. Sin una identidad visual confiable, cualquier peso que inviertas en publicidad tirará la casa abajo. Tu prioridad #1 es construir una imagen que venda.",
+                cta: "CONSTRUIR MI GÉNESIS",
+                wa_msg: "Hola Talento, el diagnóstico dice que necesito el *Plan Génesis* para construir mi marca desde cero. 🏗️"
             },
-            'diy': {
-                title: "PUBLICIDAD DIY (HAZLO TÚ MISMO)",
-                text: "Tienes las bases, pero tu presupuesto actual sugiere cautela. La mejor inversión para ti es aprender a gestionar tus propias campañas con nuestra guía, manteniendo tus costos bajos mientras validas tu mercado.",
-                cta: "VER OPCIÓN DIY",
-                wa_msg: "Hola, mi diagnóstico me recomendó la opción *DIY* para gestionar mis campañas. Quiero más info. 🛠️"
+            'impulso': {
+                title: "PLAN IMPULSO (Gestión Compartida)",
+                text: "Tienes las ganas y el tiempo, solo te faltan las herramientas profesionales. No necesitas contratar una agencia costosa, necesitas un 'copiloto' estratégico que te guíe para que tú mismo tomes el control.",
+                cta: "ACTIVAR PLAN IMPULSO",
+                wa_msg: "Hola, tengo tiempo para gestionar pero necesito guía. Me interesa el *Plan Impulso*. 🛠️"
             },
-            'dfy': {
-                title: "PUBLICIDAD DFY (NOSOTROS NOS ENCARGAMOS)",
-                text: "Estás listo para escalar. Tienes la imagen, la tracción y el capital. No pierdas tiempo aprendiendo curvas técnicas; nuestro equipo se encargará de todo tu ecosistema publicitario para traerte resultados.",
-                cta: "AGENDAR ONBOARDING",
-                wa_msg: "Hola! Califiqué para el servicio *DFY (Done For You)*. Quiero agendar mi onboarding para escalar. 🚀"
-            },
-            'no_help': {
-                title: "NO PODEMOS AYUDARTE POR AHORA",
-                text: "Gracias por tu honestidad. Basado en tus respuestas, creemos que tu proyecto aún está en una etapa demasiado temprana para nuestras soluciones. Te recomendamos seguir validando tu idea orgánicamente antes de invertir.",
-                cta: "VER RECURSOS GRATUITOS",
-                wa_msg: "Hola, hice el diagnóstico. Mi proyecto aún está en etapa semilla pero quisiera ver sus recursos gratuitos. 🌱"
+            'dominio': {
+                title: "PLAN DOMINIO (Gestión Total)",
+                text: "Detectamos que tu activo más valioso es tu tiempo. Operativamente estás saturado y delegar no es un lujo, es una necesidad de supervivencia. Nosotros tomamos el control total de tu ecosistema digital.",
+                cta: "RECLAMAR PLAN DOMINIO",
+                wa_msg: "Hola! Soy un perfil *Dominio*. Necesito delegar mi operación digital totalmente en ustedes. 👑"
             }
         };
 
@@ -222,36 +233,10 @@
             state[group] = value;
         }
 
-        const budgets = [
-            "$1,500 - $3,000",
-            "$5,000 - $8,000",
-            "$10,000 - $20,000",
-            "$25,000+"
-        ];
-
-        function setBudget(index) {
-            state.budget = index;
-            const options = document.querySelectorAll('.budget-option');
-            options.forEach(opt => opt.classList.remove('active'));
-            options[index].classList.add('active');
-
-            const indicator = document.getElementById('b-indicator');
-            indicator.style.transform = `translateX(${index * 100}%)`;
-
-            document.getElementById('budget-display').innerText = budgets[index] + " MXN";
-
-            const display = document.getElementById('budget-display');
-            display.style.opacity = 0;
-            setTimeout(() => { display.style.opacity = 1; }, 100);
-        }
-
         function goToWhatsapp() {
             const strategyData = strategies[state.currentStrategy];
             const name = document.getElementById('name').value || "prospecto";
-
-            // Construimos el mensaje final agregando el nombre
             const finalMsg = `Soy ${name}. ${strategyData.wa_msg}`;
-
             const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMsg)}`;
             window.open(url, '_blank');
         }
@@ -260,42 +245,39 @@
             const name = document.getElementById('name').value;
             const project = document.getElementById('project').value;
 
-            // Opcionales (Solo se capturan, no bloquean)
-            const ticket = document.getElementById('avg_ticket').value;
-            const social = document.getElementById('social_link').value;
-
             if (!name || !project) {
-                alert("Por favor completa los campos principales.");
+                alert("Por favor completa los campos principales (Nombre y Proyecto).");
                 return;
             }
 
             document.getElementById('loader').style.display = 'flex';
 
-            // --- NUEVA LÓGICA DE DECISIÓN (4 SALIDAS) ---
-            let selectedStrategy = 'diy'; // Default
+            // --- CEREBRO DE DIAGNÓSTICO (LÓGICA) ---
+            let selectedStrategy = 'genesis'; // Default de seguridad
 
-            // 1. FILTRO VISUAL: Si es amateur -> GÉNESIS (Prioridad máxima)
-            if (state.visual === 'amateur') {
+            // 1. FILTRO DE MARCA (La puerta de entrada)
+            if (state.q1 === 'naked' || state.q1 === 'messy') {
                 selectedStrategy = 'genesis';
             }
-            // 2. FILTRO PRESUPUESTO + ETAPA
-            else {
-                // Si ya es Pro Visualmente:
-                if (state.stage === 'seed' && state.budget === 0) {
-                    // Semilla + Presupuesto más bajo -> No Help
-                    selectedStrategy = 'no_help';
-                } else if (state.budget >= 2) {
-                    // Presupuesto Alto o Top -> DFY (Done For You)
-                    selectedStrategy = 'dfy';
-                } else {
-                    // Presupuesto Bajo/Medio + No es seed pobre -> DIY
-                    selectedStrategy = 'diy';
+            // 2. Si tiene marca, evaluamos TIEMPO
+            else { // state.q1 === 'clean'
+                if (state.q2 === 'start') {
+                    // Tiene marca pero dice que empieza de cero (Caso raro, pero posible) -> Genesis
+                    selectedStrategy = 'genesis';
+                } else if (state.q2 === 'no_time') {
+                    // Tiene marca + NO tiene tiempo -> DOMINIO (High Ticket)
+                    selectedStrategy = 'dominio';
+                } else { // state.q2 === 'time'
+                    // Tiene marca + Tiene tiempo -> Evaluamos QUÉ QUIERE (Q3)
+                    if (state.q3 === 'drive') {
+                        selectedStrategy = 'impulso'; // Quiere manejar
+                    } else { // state.q3 === 'passenger'
+                        selectedStrategy = 'dominio'; // Quiere ser pasajero aunque tenga tiempo
+                    }
                 }
             }
 
-            // Guardar en el estado para usarlo en el botón
             state.currentStrategy = selectedStrategy;
-
             const resultData = strategies[selectedStrategy];
 
             setTimeout(() => {
@@ -306,8 +288,6 @@
                 document.getElementById('res-desc').innerHTML = `Hola <b>${name}</b>.<br><br>${resultData.text}`;
                 document.getElementById('res-cta-text').innerText = resultData.cta;
 
-                // Si es "no help", cambiar color de botón o estilo si quisieras
-                // Asignar la función al botón
                 document.getElementById('btn-cta').onclick = goToWhatsapp;
 
                 const result = document.getElementById('result-view');
