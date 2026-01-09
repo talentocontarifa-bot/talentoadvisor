@@ -173,11 +173,16 @@
     </div>
 
     <script>
-        // State State Management
+        // CONFIGURACIÓN
+        // 🚨 IMPORTANTE: Cambia este número por el tuyo (formato internacional sin +)
+        const whatsappNumber = "5215500000000"; 
+        
+        // State
         let state = {
             stage: 'traction',
             visual: 'pro',
-            budget: 1
+            budget: 1,
+            currentStrategy: 'diy' // Para guardar el resultado final
         };
 
         // 4 ESTRATEGIAS CLAVE
@@ -185,22 +190,26 @@
             'genesis': {
                 title: "PAQUETE GÉNESIS",
                 text: "Antes de correr, necesitas zapatos. Detectamos que tu identidad visual no está lista para competir en el mercado actual. Empezar campañas sin una imagen profesional es tirar dinero. Tu primer paso es el <b>Diseño de Logo + Kit Inicial</b>.",
-                cta: "VER PAQUETE GÉNESIS"
+                cta: "SOLICITAR PAQUETE GÉNESIS",
+                wa_msg: "Hola Talento, hice mi diagnóstico y necesito el *Paquete Génesis* para arreglar mi identidad visual. 🎨"
             },
             'diy': {
                 title: "PUBLICIDAD DIY (HAZLO TÚ MISMO)",
                 text: "Tienes las bases, pero tu presupuesto actual sugiere cautela. La mejor inversión para ti es aprender a gestionar tus propias campañas con nuestra guía, manteniendo tus costos bajos mientras validas tu mercado.",
-                cta: "VER OPCIÓN DIY"
+                cta: "VER OPCIÓN DIY",
+                wa_msg: "Hola, mi diagnóstico me recomendó la opción *DIY* para gestionar mis campañas. Quiero más info. 🛠️"
             },
             'dfy': {
                 title: "PUBLICIDAD DFY (NOSOTROS NOS ENCARGAMOS)",
                 text: "Estás listo para escalar. Tienes la imagen, la tracción y el capital. No pierdas tiempo aprendiendo curvas técnicas; nuestro equipo se encargará de todo tu ecosistema publicitario para traerte resultados.",
-                cta: "AGENDAR ONBOARDING"
+                cta: "AGENDAR ONBOARDING",
+                wa_msg: "Hola! Califiqué para el servicio *DFY (Done For You)*. Quiero agendar mi onboarding para escalar. 🚀"
             },
             'no_help': {
                 title: "NO PODEMOS AYUDARTE POR AHORA",
                 text: "Gracias por tu honestidad. Basado en tus respuestas, creemos que tu proyecto aún está en una etapa demasiado temprana para nuestras soluciones. Te recomendamos seguir validando tu idea orgánicamente antes de invertir.",
-                cta: "VER RECURSOS GRATUITOS"
+                cta: "VER RECURSOS GRATUITOS",
+                wa_msg: "Hola, hice el diagnóstico. Mi proyecto aún está en etapa semilla pero quisiera ver sus recursos gratuitos. 🌱"
             }
         };
 
@@ -232,6 +241,17 @@
             const display = document.getElementById('budget-display');
             display.style.opacity = 0;
             setTimeout(() => { display.style.opacity = 1; }, 100);
+        }
+
+        function goToWhatsapp() {
+            const strategyData = strategies[state.currentStrategy];
+            const name = document.getElementById('name').value || "prospecto";
+            
+            // Construimos el mensaje final agregando el nombre
+            const finalMsg = `Soy ${name}. ${strategyData.wa_msg}`;
+            
+            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMsg)}`;
+            window.open(url, '_blank');
         }
 
         function startAnalysis() {
@@ -270,6 +290,9 @@
                     selectedStrategy = 'diy';
                 }
             }
+            
+            // Guardar en el estado para usarlo en el botón
+            state.currentStrategy = selectedStrategy;
 
             const resultData = strategies[selectedStrategy];
 
@@ -282,6 +305,8 @@
                 document.getElementById('res-cta-text').innerText = resultData.cta;
 
                 // Si es "no help", cambiar color de botón o estilo si quisieras
+                // Asignar la función al botón
+                document.getElementById('btn-cta').onclick = goToWhatsapp;
 
                 const result = document.getElementById('result-view');
                 result.style.display = 'block';
