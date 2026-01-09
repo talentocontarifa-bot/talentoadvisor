@@ -175,8 +175,8 @@
     <script>
         // CONFIGURACIÓN
         // 🚨 IMPORTANTE: Cambia este número por el tuyo (formato internacional sin +)
-        const whatsappNumber = "5215500000000"; 
-        
+        const whatsappNumber = "529845828658";
+
         // State
         let state = {
             stage: 'traction',
@@ -246,10 +246,10 @@
         function goToWhatsapp() {
             const strategyData = strategies[state.currentStrategy];
             const name = document.getElementById('name').value || "prospecto";
-            
+
             // Construimos el mensaje final agregando el nombre
             const finalMsg = `Soy ${name}. ${strategyData.wa_msg}`;
-            
+
             const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMsg)}`;
             window.open(url, '_blank');
         }
@@ -290,7 +290,7 @@
                     selectedStrategy = 'diy';
                 }
             }
-            
+
             // Guardar en el estado para usarlo en el botón
             state.currentStrategy = selectedStrategy;
 
