@@ -157,7 +157,7 @@
         <div id="result-view" class="glass-card result-card"
             style="margin-top: 40px; border: 1px solid var(--accent-yellow);">
             <div style="text-align: center; margin-bottom: 30px;">
-                <img src="assets/image_0.jpg" alt="Icono"
+                <img id="res-img" src="assets/image_0.jpg" alt="Icono"
                     style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent-cyan); box-shadow: 0 0 20px var(--accent-pink);">
             </div>
 
@@ -210,19 +210,22 @@
                 title: "PLAN GÉNESIS",
                 text: "Tu negocio necesita cimientos antes de un techo. Sin una identidad visual confiable, cualquier peso que inviertas en publicidad tirará la casa abajo. Tu prioridad #1 es construir una imagen que venda.",
                 cta: "CONSTRUIR MI GÉNESIS",
-                wa_msg: "Hola Talento, el diagnóstico dice que necesito el *Plan Génesis* para construir mi marca desde cero. 🏗️"
+                wa_msg: "Hola Talento, el diagnóstico dice que necesito el *Plan Génesis* para construir mi marca desde cero. 🏗️",
+                img: "assets/Genesis.png"
             },
             'impulso': {
                 title: "PLAN IMPULSO (Gestión Compartida)",
                 text: "Tienes las ganas y el tiempo, solo te faltan las herramientas profesionales. No necesitas contratar una agencia costosa, necesitas un 'copiloto' estratégico que te guíe para que tú mismo tomes el control.",
                 cta: "ACTIVAR PLAN IMPULSO",
-                wa_msg: "Hola, tengo tiempo para gestionar pero necesito guía. Me interesa el *Plan Impulso*. 🛠️"
+                wa_msg: "Hola, tengo tiempo para gestionar pero necesito guía. Me interesa el *Plan Impulso*. 🛠️",
+                img: "assets/Impulso.png"
             },
             'dominio': {
                 title: "PLAN DOMINIO (Gestión Total)",
                 text: "Detectamos que tu activo más valioso es tu tiempo. Operativamente estás saturado y delegar no es un lujo, es una necesidad de supervivencia. Nosotros tomamos el control total de tu ecosistema digital.",
                 cta: "RECLAMAR PLAN DOMINIO",
-                wa_msg: "Hola! Soy un perfil *Dominio*. Necesito delegar mi operación digital totalmente en ustedes. 👑"
+                wa_msg: "Hola! Soy un perfil *Dominio*. Necesito delegar mi operación digital totalmente en ustedes. 👑",
+                img: "assets/Dominio.png"
             }
         };
 
@@ -287,6 +290,7 @@
                 document.getElementById('res-title').innerText = resultData.title;
                 document.getElementById('res-desc').innerHTML = `Hola <b>${name}</b>.<br><br>${resultData.text}`;
                 document.getElementById('res-cta-text').innerText = resultData.cta;
+                document.getElementById('res-img').src = resultData.img;
 
                 document.getElementById('btn-cta').onclick = goToWhatsapp;
 
